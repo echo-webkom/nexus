@@ -20,6 +20,7 @@ import {
   usersToShoppingListItems,
   userTypeEnum,
 } from ".";
+import { showcases } from "./showcases";
 
 export const users = pgTable(
   "user",
@@ -60,6 +61,7 @@ export const usersRelations = relations(users, ({ one, many }) => ({
     references: [strikes.id],
   }),
   comments: many(comments),
+  showcases: many(showcases),
 }));
 
 export type User = InferSelectModel<typeof users>;

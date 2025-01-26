@@ -5,6 +5,7 @@ import {
   LuBuilding2,
   LuCalendarDays,
   LuCircleDollarSign,
+  LuFlaskConical,
   LuGraduationCap,
   LuHeart,
   LuHeartHandshake,
@@ -63,6 +64,12 @@ export const headerRoutes: Array<Route> = [
         href: "/for-studenter/innlegg",
         description: "Nyheter og oppdateringer fra echo",
         icon: LuMailOpen,
+      },
+      {
+        label: "ProjectHub",
+        href: "/for-studenter/project-hub",
+        description: "Oversikt over prosjekter studentene på informatikk har jobbet med",
+        icon: LuFlaskConical,
       },
       {
         label: "Hovedstyrer",
