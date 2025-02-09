@@ -23,6 +23,7 @@ const baseMessages = [
   "Divine intellect",
   "Skrevet i Holy C",
   "We stan Bjarne",
+  "Rust or bust",
 ];
 
 const getExtraMessages = (now: Date) => {
@@ -63,6 +64,10 @@ const getDateSpecificMessage = (date: Date) => {
 
   if ([5, 6].includes(getMonth(date))) {
     return "God sommer 🌞";
+  }
+
+  if (getMonth(date) === 1 && getDate(date) === 14) {
+    return "❤️❤️❤️";
   }
 
   if (isThursday(date) && getHours(date) < 12) {
