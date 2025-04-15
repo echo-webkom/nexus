@@ -69,7 +69,10 @@ export const happeningQuery = groq`
   "slug": slug.current,
   isPinned,
   happeningType,
+<<<<<<< HEAD
   hideRegistrations,
+=======
+>>>>>>> 7eb51285 (Finish frontpage)
   "company": company->{
     _id,
     name,
