@@ -93,9 +93,21 @@ importers:
       '@lucide/svelte':
         specifier: ^0.488.0
         version: 0.488.0(svelte@5.27.0)
+      '@sanity/client':
+        specifier: 6.27.2
+        version: 6.27.2(debug@4.4.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      groq:
+        specifier: ^3.84.0
+        version: 3.88.2
+      ky:
+        specifier: ^1.8.1
+        version: 1.8.1
+      marked:
+        specifier: ^15.0.8
+        version: 15.0.11
       tailwind-merge:
         specifier: ^3.2.0
         version: 3.3.0
@@ -5415,6 +5427,10 @@ packages:
   known-css-properties@0.35.0:
     resolution: {integrity: sha512-a/RAk2BfKk+WFGhhOCAYqSiFLc34k8Mt/6NWRI4joER0EYUzXIcFivjjnoD3+XU1DggLn/tZc3DOAgke7l8a4A==}
 
+  ky@1.8.1:
+    resolution: {integrity: sha512-7Bp3TpsE+L+TARSnnDpk3xg8Idi8RwSLdj6CMbNWoOARIrGrbuLGusV0dYwbZOm4bB3jHNxSw8Wk/ByDqJEnDw==}
+    engines: {node: '>=18'}
+
   language-subtag-registry@0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
 
@@ -5605,6 +5621,11 @@ packages:
   map-obj@4.3.0:
     resolution: {integrity: sha512-hdN1wVrZbb29eBGiGjJbeP8JbKjq1urkHJ/LIP/NY48MZ1QVXUsQBV1G1zvYFHn1XE06cwjBsOI2K3Ulnj1YXQ==}
     engines: {node: '>=8'}
+
+  marked@15.0.11:
+    resolution: {integrity: sha512-1BEXAU2euRCG3xwgLVT1y0xbJEld1XOrmRJpUwRCcy7rxhSCwMrmEu9LXoPhHSCJG41V7YcQ2mjKRr5BA3ITIA==}
+    engines: {node: '>= 18'}
+    hasBin: true
 
   marked@4.3.0:
     resolution: {integrity: sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==}
@@ -10225,7 +10246,7 @@ snapshots:
   '@sanity/bifur-client@0.4.1':
     dependencies:
       nanoid: 3.3.11
-      rxjs: 7.8.1
+      rxjs: 7.8.2
 
   '@sanity/cli@3.88.2(@types/node@20.17.10)(@types/react@19.0.3)(jiti@2.4.2)(lightningcss@1.29.2)(react@18.3.1)(terser@5.37.0)(tsx@4.19.1)(typescript@5.6.3)(yaml@2.7.0)':
     dependencies:
@@ -10268,7 +10289,7 @@ snapshots:
     dependencies:
       '@sanity/eventsource': 5.0.2
       get-it: 8.6.7(debug@4.4.0)
-      rxjs: 7.8.1
+      rxjs: 7.8.2
     transitivePeerDependencies:
       - debug
 
@@ -10276,7 +10297,7 @@ snapshots:
     dependencies:
       '@sanity/eventsource': 5.0.2
       get-it: 8.6.7(debug@4.4.0)
-      rxjs: 7.8.1
+      rxjs: 7.8.2
     transitivePeerDependencies:
       - debug
 
@@ -10313,7 +10334,7 @@ snapshots:
 
   '@sanity/comlink@2.0.5':
     dependencies:
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       uuid: 11.0.5
       xstate: 5.19.2
 
@@ -10551,7 +10572,7 @@ snapshots:
       '@types/lodash-es': 4.17.12
       lodash-es: 4.17.21
       reselect: 5.1.1
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       zustand: 5.0.4(@types/react@19.0.3)(immer@10.0.4)(react@18.3.1)(use-sync-external-store@1.5.0(react@18.3.1))
     transitivePeerDependencies:
       - '@types/react'
@@ -10564,7 +10585,7 @@ snapshots:
     dependencies:
       lodash: 4.17.21
       react: 18.3.1
-      rxjs: 7.8.1
+      rxjs: 7.8.2
       typeid-js: 0.3.0
 
   '@sanity/template-validator@2.4.3':
@@ -10611,7 +10632,7 @@ snapshots:
       '@sanity/types': 3.68.3(@types/react@19.0.3)(debug@4.4.0)
       get-random-values-esm: 1.0.2
       moment: 2.30.1
-      rxjs: 7.8.1
+      rxjs: 7.8.2
     transitivePeerDependencies:
       - '@types/react'
       - debug
@@ -10622,7 +10643,7 @@ snapshots:
       '@sanity/types': 3.88.2(@types/react@19.0.3)(debug@4.4.0)
       get-random-values-esm: 1.0.2
       moment: 2.30.1
-      rxjs: 7.8.1
+      rxjs: 7.8.2
     transitivePeerDependencies:
       - '@types/react'
       - debug
@@ -13492,6 +13513,8 @@ snapshots:
 
   known-css-properties@0.35.0: {}
 
+  ky@1.8.1: {}
+
   language-subtag-registry@0.3.22: {}
 
   language-tags@1.0.9:
@@ -13650,6 +13673,8 @@ snapshots:
   map-obj@1.0.1: {}
 
   map-obj@4.3.0: {}
+
+  marked@15.0.11: {}
 
   marked@4.3.0: {}
 
