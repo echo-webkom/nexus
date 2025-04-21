@@ -10,6 +10,7 @@
 	let data = $derived(page.data as PageData);
 	// svelte-ignore state_referenced_locally
 	let shoppingList = $state(data.shoppingList.slice(0, 4));
+	let sortedList = $derived(shoppingList.toSorted((a, b) => b.likes.length - a.likes.length));
 	let auth = getAuth();
 </script>
 
@@ -17,7 +18,7 @@
 	<div class="border-2 rounded-xl h-full p-4">
 		{#if shoppingList.length > 0}
 			<ul>
-				{#each shoppingList as item}
+				{#each sortedList as item}
 					{@const hasLiked = auth.user?.id && item.likes.includes(auth.user.id)}
 					<li class="flex items-center justify-between">
 						<p>
