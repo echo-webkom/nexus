@@ -260,7 +260,7 @@
 		{/each}
 	</div>
 
-	<div class="flex items-center h-[30px] text-xs pl-3 gap-4">
+	<div class="flex items-center flex-wrap h-[30px] text-[10px] md:text-xs pl-3 gap-x-2">
 		{#each calenderTypes as type, i}
 			<button
 				onclick={() => (calenderTypes[i].active = !calenderTypes[i].active)}
