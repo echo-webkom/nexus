@@ -18,10 +18,12 @@ func New(pool *pgxpool.Pool) *WhitelistService {
 }
 
 func (s *WhitelistService) ListWhitelist(ctx context.Context) ([]database.Whitelist, error) {
+	query := `
+		SELECT email, expires_at, reason FROM whitelist
+	`
+
 	whitelists := []database.Whitelist{}
-	rows, err := s.pool.Query(ctx, `
-		SELECT email, expires_at, reason FROM whitelists
-	`)
+	rows, err := s.pool.Query(ctx, query)
 	if err != nil {
 		return nil, err
 	}
@@ -41,10 +43,12 @@ func (s *WhitelistService) ListWhitelist(ctx context.Context) ([]database.Whitel
 }
 
 func (s *WhitelistService) GetWhitelist(ctx context.Context, email string) (database.Whitelist, error) {
+	query := `
+		SELECT email, expires_at, reason FROM whitelist WHERE email = $1
+	`
+
 	var w database.Whitelist
-	err := s.pool.QueryRow(ctx, `
-		SELECT email, expires_at, reason FROM whitelists WHERE email = $1
-	`, email).Scan(
+	err := s.pool.QueryRow(ctx, query, email).Scan(
 		&w.Email,
 		&w.ExpiresAt,
 		&w.Reason,

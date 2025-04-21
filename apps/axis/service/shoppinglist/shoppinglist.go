@@ -18,7 +18,7 @@ func New(pool *pgxpool.Pool) *ShoppingListService {
 
 // List the shopping list items with their associated user information.
 func (s *ShoppingListService) ListShoppingItems(ctx context.Context) ([]ShoppingListItemWithUser, error) {
-	rows, err := s.pool.Query(ctx, `
+	query := `
 		SELECT
     		sli.id,
     		sli.name AS item_name,
@@ -28,7 +28,10 @@ func (s *ShoppingListService) ListShoppingItems(ctx context.Context) ([]Shopping
 		FROM shopping_list_item sli
 		JOIN "user" u ON sli.user_id = u.id
 		LEFT JOIN users_to_shopping_list_items l ON sli.id = l.item_id
-		GROUP BY sli.id, u.name`)
+		GROUP BY sli.id, u.name
+	`
+
+	rows, err := s.pool.Query(ctx, query)
 
 	if err != nil {
 		return nil, err
@@ -53,11 +56,14 @@ func (s *ShoppingListService) ListShoppingItems(ctx context.Context) ([]Shopping
 
 // Creates a new shopping list item.
 func (s *ShoppingListService) CreateShoppingItem(ctx context.Context, name, userID string) (string, error) {
-	var id string
-	err := s.pool.QueryRow(ctx, `
+	query := `
 		INSERT INTO shopping_list_item (name, user_id)
 		VALUES ($1, $2)
-		RETURNING id`, name, userID).Scan(&id)
+		RETURNING id
+	`
+
+	var id string
+	err := s.pool.QueryRow(ctx, query, name, userID).Scan(&id)
 	if err != nil {
 		return "", err
 	}
@@ -69,31 +75,40 @@ func (s *ShoppingListService) CreateShoppingItem(ctx context.Context, name, user
 
 // Likes a shopping list item for a user.
 func (s *ShoppingListService) LikeShoppingListItem(ctx context.Context, itemID, userID string) error {
-	_, err := s.pool.Exec(ctx, `
+	query := `
 		INSERT INTO users_to_shopping_list_items (user_id, item_id)
 		VALUES ($1, $2)
-		ON CONFLICT (user_id, item_id) DO NOTHING`, userID, itemID)
+		ON CONFLICT (user_id, item_id) DO NOTHING
+	`
+
+	_, err := s.pool.Exec(ctx, query, userID, itemID)
 
 	return err
 }
 
 // Removes a like from a shopping list item for a user.
 func (s *ShoppingListService) UnlikeShoppingListItem(ctx context.Context, itemID, userID string) error {
-	_, err := s.pool.Exec(ctx, `
+	query := `
 		DELETE FROM users_to_shopping_list_items
-		WHERE user_id = $1 AND item_id = $2`, userID, itemID)
+		WHERE user_id = $1 AND item_id = $2
+	`
+
+	_, err := s.pool.Exec(ctx, query, userID, itemID)
 	return err
 }
 
 // Checks if a user has liked a shopping list item.
 func (s *ShoppingListService) HasUserLikedItem(ctx context.Context, userID, itemID string) (bool, error) {
-	var liked bool
-	err := s.pool.QueryRow(ctx, `
+	query := `
 		SELECT EXISTS (
 			SELECT 1
 			FROM users_to_shopping_list_items
 			WHERE user_id = $1 AND item_id = $2
-		)`, userID, itemID).Scan(&liked)
+		)
+	`
+
+	var liked bool
+	err := s.pool.QueryRow(ctx, query, userID, itemID).Scan(&liked)
 
 	if err != nil {
 		return false, err

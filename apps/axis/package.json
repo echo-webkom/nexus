@@ -7,6 +7,7 @@
     "dev": "pnpm with-env air",
     "build": "pnpm with-env go build -o build/axis cmd/main.go",
     "test": "pnpm with-env go test ./... -v",
+    "format": "pnpm with-env gofmt -w .",
     "clean": "rimraf build .turbo node_modules tmp",
     "with-env": "dotenv -e ../../.env --"
   },

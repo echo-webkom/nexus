@@ -27,12 +27,14 @@ func (s *UserService) FindUserByFeideID(ctx context.Context, feideID string) (da
 		return database.User{}, err
 	}
 
-	var user database.User
-	err = s.pool.QueryRow(ctx, `
+	query := `
 		SELECT id, name, email, image, alternative_email, degree_id, year, birthday
 		FROM "user"
 		WHERE id = $1
-	`, account.UserID).Scan(
+	`
+
+	var user database.User
+	err = s.pool.QueryRow(ctx, query, account.UserID).Scan(
 		&user.ID,
 		&user.Name,
 		&user.Email,

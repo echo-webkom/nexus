@@ -29,9 +29,12 @@ func (s *FeedbackService) SubmitFeedback(ctx context.Context, feedback NewFeedba
 		return errors.New("invalid email")
 	}
 
-	_, err = s.pool.Exec(ctx, `
+	query := `
 		INSERT INTO site_feedback (id, email, name, message)
-		VALUES ($1, $2, $3, $4)`, id, feedback.Email, feedback.Name, feedback.Message)
+		VALUES ($1, $2, $3, $4)
+	`
+
+	_, err = s.pool.Exec(ctx, query, id, feedback.Email, feedback.Name, feedback.Message)
 
 	return err
 }
@@ -39,10 +42,13 @@ func (s *FeedbackService) SubmitFeedback(ctx context.Context, feedback NewFeedba
 func (s *FeedbackService) ListFeedback(ctx context.Context) ([]database.SiteFeedback, error) {
 	feedbacks := []database.SiteFeedback{}
 
-	rows, err := s.pool.Query(ctx, `
+	query := `
 		SELECT id, email, name, message, is_read, created_at
 		FROM site_feedback
-		ORDER BY created_at DESC`)
+		ORDER BY created_at DESC
+	`
+
+	rows, err := s.pool.Query(ctx, query)
 	if err != nil {
 		return nil, err
 	}
