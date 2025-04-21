@@ -9,6 +9,7 @@
 	import { ThemeState } from '$lib/state/theme.svelte';
 	import { setThemeContext } from '$lib/context/color-theme';
 	import { AuthContext } from '$lib/context/auth';
+	import Progress from '$lib/components/layout/progress.svelte';
 
 	let { children, data } = $props();
 
@@ -32,6 +33,8 @@
 		content="Nettsiden til echo – Linjeforeningen for informatikk ved Universitetet i Bergen."
 	/>
 </svelte:head>
+
+<Progress />
 
 <Tooltip.Provider>
 	<Toaster richColors closeButton bind:theme={theme.current} />
