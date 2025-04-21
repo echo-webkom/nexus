@@ -22,7 +22,7 @@
 
 <Avatar.Root
 	class={cn(
-		'border-2 rounded-full flex shrink-0 text-sm overflow-hidden items-center justify-center size-10',
+		'flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 text-sm',
 		className
 	)}
 	{...restProps}

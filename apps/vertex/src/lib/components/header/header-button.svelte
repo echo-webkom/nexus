@@ -36,7 +36,7 @@
 	<button
 		onclick={handleClick}
 		class={[
-			'font-medium flex h-10 p-2 hover:bg-muted rounded-xl dark:text-foreground text-gray-600 items-center gap-2',
+			'hover:bg-muted dark:text-foreground flex h-10 items-center gap-2 rounded-xl p-2 font-medium text-gray-600',
 			className
 		]}
 		{...props}

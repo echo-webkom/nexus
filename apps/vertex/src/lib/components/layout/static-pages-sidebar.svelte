@@ -10,7 +10,7 @@
 
 {#if r}
 	<aside class="hidden w-full max-w-[200px] flex-shrink-0 flex-col md:flex">
-		<h2 class="text-lg mb-4 font-semibold text-foreground">{r.label}</h2>
+		<h2 class="text-foreground mb-4 text-lg font-semibold">{r.label}</h2>
 
 		<menu class="flex flex-col space-y-2">
 			{#each r.links as link}

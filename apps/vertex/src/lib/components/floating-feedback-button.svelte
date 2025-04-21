@@ -4,10 +4,10 @@
 	import Tooltip from '$lib/components/ui/tooltip.svelte';
 </script>
 
-<div class="fixed bottom-0 right-0 z-30 m-5">
+<div class="fixed right-0 bottom-0 z-30 m-5">
 	<Tooltip>
 		{#snippet trigger()}
-			<Button class="p-1 size-12" href="/tilbakemelding">
+			<Button class="size-12 p-1" href="/tilbakemelding">
 				<MessageCircle class="size-6 text-white" />
 			</Button>
 		{/snippet}

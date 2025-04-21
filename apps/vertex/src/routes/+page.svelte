@@ -6,13 +6,13 @@
 	let { data } = $props();
 </script>
 
-<main class="mx-auto flex w-full flex-col px-4 sm:px-6 lg:px-8 max-w-[1200px] mb-20">
-	<div class="mb-24 mt-32 space-y-16">
+<main class="mx-auto mb-20 flex w-full max-w-[1200px] flex-col px-4 sm:px-6 lg:px-8">
+	<div class="mt-32 mb-24 space-y-16">
 		<div class="mx-auto max-w-screen-md text-center">
-			<h1 class="text-4xl mb-8 font-semibold text-gray-700 dark:text-gray-200 sm:text-5xl">
+			<h1 class="mb-8 text-4xl font-semibold text-gray-700 sm:text-5xl dark:text-gray-200">
 				echo – Linjeforeningen for informatikk
 			</h1>
-			<p class="mx-auto max-w-screen-md font-medium text-muted-foreground md:text-xl">
+			<p class="text-muted-foreground mx-auto max-w-screen-md font-medium md:text-xl">
 				Vi i echo jobber med å gjøre studiehverdagen for informatikkstudenter bedre ved å arrangere
 				sosiale og faglige arrangementer.
 			</p>
@@ -25,9 +25,9 @@
 	</div>
 
 	<div class="mx-auto mt-10 max-w-screen-lg space-y-32">
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-			<div class="h-full flex flex-col">
-				<h2 class="font-medium text-xl mb-4">Hva er echo?</h2>
+		<div class="grid grid-cols-1 gap-16 md:grid-cols-2">
+			<div class="flex h-full flex-col">
+				<h2 class="mb-4 text-xl font-medium">Hva er echo?</h2>
 
 				<p>
 					echo består av frivillige informatikkstudenter, og er delt inn i et hovedstyre og en rekke
@@ -38,8 +38,8 @@
 				</p>
 			</div>
 
-			<div class="h-full flex flex-col">
-				<h2 class="font-medium text-xl mb-4">For bedrifter</h2>
+			<div class="flex h-full flex-col">
+				<h2 class="mb-4 text-xl font-medium">For bedrifter</h2>
 
 				<p>
 					Vi tilbyr også muligheten for bedrifter til å presentere seg for informatikkstudentene ved
@@ -49,21 +49,21 @@
 				</p>
 
 				<p class="mt-auto">
-					<a class="hover:underline text-primary" href="/">Les om bedriftspresentasjoner →</a>
+					<a class="text-primary hover:underline" href="/">Les om bedriftspresentasjoner →</a>
 				</p>
 			</div>
 		</div>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+		<div class="grid grid-cols-1 gap-16 md:grid-cols-2">
 			<div>
-				<h2 class="font-medium text-xl mb-4">Arrangementer</h2>
+				<h2 class="mb-4 text-xl font-medium">Arrangementer</h2>
 
 				{#each data.events as event}
 					<a
 						href="/arrangement/{event.slug}"
 						class="mb-1 flex items-center justify-between hover:underline"
 					>
-						<h3 class="font-medium truncate line-clamp-1">{event.title}</h3>
+						<h3 class="line-clamp-1 truncate font-medium">{event.title}</h3>
 						<p class="text-muted-foreground">{format(event.date, 'eee. dd.MM', { locale: nb })}</p>
 					</a>
 				{:else}
@@ -72,14 +72,14 @@
 			</div>
 
 			<div>
-				<h2 class="font-medium text-xl mb-4">Bedriftspresentasjoner</h2>
+				<h2 class="mb-4 text-xl font-medium">Bedriftspresentasjoner</h2>
 
 				{#each data.bedpres as bedpres}
 					<a
 						href="/bedpres/{bedpres.slug}"
 						class="mb-1 flex items-center justify-between hover:underline"
 					>
-						<h3 class="font-medium truncate line-clamp-1">{bedpres.title}</h3>
+						<h3 class="line-clamp-1 truncate font-medium">{bedpres.title}</h3>
 						<p class="text-muted-foreground">
 							{format(bedpres.date, 'eee. dd.MM', { locale: nb })}
 						</p>

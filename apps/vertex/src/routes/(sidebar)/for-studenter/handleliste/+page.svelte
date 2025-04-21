@@ -18,10 +18,10 @@
 <Heading>Hyggkoms handleliste</Heading>
 
 {#if items.length > 0}
-	<ul class="rounded-2xl border overflow-hidden">
+	<ul class="overflow-hidden rounded-2xl border">
 		{#each items as item}
 			{@const hasLiked = auth.user?.id && item.likes.includes(auth.user.id)}
-			<li class="flex items-center justify-between py-4 px-6 odd:bg-muted">
+			<li class="odd:bg-muted flex items-center justify-between px-6 py-4">
 				<p>
 					{item.name}
 				</p>
@@ -30,12 +30,12 @@
 					<span class="text-muted-foreground">{item.likes.length}</span>
 					<form class="flex items-center" action="?/like" method="post" use:enhance>
 						<input type="hidden" name="id" value={item.id} />
-						<button class="cursor-pointer group">
+						<button class="group cursor-pointer">
 							<Heart
 								class={cn(
-									'text-muted-foreground size-5 group-hover:text-red-600 group-hover:fill-red-300 transition-all active:scale-95',
+									'text-muted-foreground size-5 transition-all group-hover:fill-red-300 group-hover:text-red-600 active:scale-95',
 									{
-										'text-red-500 fill-red-500': hasLiked
+										'fill-red-500 text-red-500': hasLiked
 									}
 								)}
 							/>
@@ -54,7 +54,7 @@
 
 	<Heading size="sm" class="mt-4">Legg til i handlelisten</Heading>
 
-	<form method="post" class="flex flex-col gap-4 max-w-md" action="?/add" use:enhance>
+	<form method="post" class="flex max-w-md flex-col gap-4" action="?/add" use:enhance>
 		<Label class="text-xl" for="name">Hva ønsker du?</Label>
 		<Input name="name" placeholder="Ditt forslag her..." required />
 

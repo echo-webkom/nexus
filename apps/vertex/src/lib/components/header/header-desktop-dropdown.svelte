@@ -6,13 +6,13 @@
 </script>
 
 {#if !!headerCtx.openRoutes?.label}
-	<nav transition:slide class="absolute bg-background border-b w-full flex">
-		<menu class="gap-4 grid grid-cols-2 lg:grid-cols-3 mx-auto max-w-7xl p-4">
+	<nav transition:slide class="bg-background absolute flex w-full border-b">
+		<menu class="mx-auto grid max-w-7xl grid-cols-2 gap-4 p-4 lg:grid-cols-3">
 			{#each headerCtx.openRoutes!.links as route}
 				{@const Icon = route.icon}
 				<li>
 					<a
-						class="p-4 rounded-xl flex border-2 border-transparent hover:border-border hover:bg-muted items-center h-24 gap-8"
+						class="hover:border-border hover:bg-muted flex h-24 items-center gap-8 rounded-xl border-2 border-transparent p-4"
 						href={route.href}
 					>
 						<div class="shrink-0">

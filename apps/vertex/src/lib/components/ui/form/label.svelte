@@ -11,13 +11,13 @@
 
 <label
 	class={cn(
-		'text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
+		'text-sm leading-none font-semibold peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
 		className
 	)}
 	{...props}
 >
 	{@render children?.()}
 	{#if required}
-		<span class="text-red-500 text-sm" aria-hidden="true">*</span>
+		<span class="text-sm text-red-500" aria-hidden="true">*</span>
 	{/if}
 </label>

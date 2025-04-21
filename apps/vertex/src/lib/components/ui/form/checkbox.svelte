@@ -17,7 +17,7 @@
 <Checkbox.Root
 	{id}
 	class={cn(
-		'rounded-md size-5 border flex border-primary items-center justify-center',
+		'border-primary flex size-5 items-center justify-center rounded-md border',
 		{
 			'bg-primary text-primary-foreground border-transparent': checked
 		},

@@ -19,7 +19,7 @@
 	</div>
 
 	<div
-		class="rounded-xl border-2 border-muted-dark bg-muted p-6 flex h-fit w-full flex-col gap-4 lg:max-w-[360px]"
+		class="border-muted-dark bg-muted flex h-fit w-full flex-col gap-4 rounded-xl border-2 p-6 lg:max-w-[360px]"
 	>
 		<div>
 			<a href="https://www.uib.no"
@@ -58,7 +58,7 @@
 		</div>
 		<div>
 			<a
-				class="inline-flex items-center font-semibold justify-center rounded-xl border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background duration-300 bg-primary border-primary-dark text-primary-foreground hover:bg-primary-hover h-10 py-2 px-4 w-full hover:underline"
+				class="focus-visible:ring-ring ring-offset-background bg-primary border-primary-dark text-primary-foreground hover:bg-primary-hover inline-flex h-10 w-full items-center justify-center rounded-xl border-2 px-4 py-2 font-semibold transition-colors duration-300 hover:underline focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
 				type="button"
 				href={data.job.link}>Søk her!</a
 			>

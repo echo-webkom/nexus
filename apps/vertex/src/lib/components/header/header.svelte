@@ -74,23 +74,23 @@
 <svelte:window onresize={() => (innerWidth = window.innerWidth)} />
 
 <div
-	class={cn('border-b relative w-full bg-background z-50', {
-		'h-full max-h-screen absolute overflow-y-auto': isMobileDropdownOpen
+	class={cn('bg-background relative z-50 w-full border-b', {
+		'absolute h-full max-h-screen overflow-y-auto': isMobileDropdownOpen
 	})}
 >
 	{#if dev}
 		<div class="bg-destructive text-destructive-foreground p-2">
-			<p class="text-center font-medium text-sm">Developer mode</p>
+			<p class="text-center text-sm font-medium">Developer mode</p>
 		</div>
 	{/if}
 
-	<header class="relative flex items-center mx-auto h-20 max-w-7xl justify-between p-4">
+	<header class="relative mx-auto flex h-20 max-w-7xl items-center justify-between p-4">
 		<div class="flex items-center gap-8">
 			<a href="/">
 				<img src={Logo} class="size-14" alt="echo Logo" />
 			</a>
 
-			<menu class="items-center mt-auto hidden md:flex">
+			<menu class="mt-auto hidden items-center md:flex">
 				<HeaderLink href="/">Hjem</HeaderLink>
 				{#each routes as route}
 					<HeaderButton label={route.label} links={route.links} />
@@ -117,7 +117,7 @@
 				<Button variant="secondary" href="/logg-inn">Logg inn</Button>
 			{/if}
 
-			<button class="md:hidden block" onclick={toggleMenu}>
+			<button class="block md:hidden" onclick={toggleMenu}>
 				{#if isMobileDropdownOpen}
 					<X class="size-6" />
 				{:else}
@@ -131,14 +131,14 @@
 			{#if message.link}
 				<a class="z-[80]" href={message.link}>
 					<span
-						class="inline-block rounded-full border-2 px-3 py-1 text-xs font-semibold border-primary-dark bg-primary text-primary-foreground"
+						class="border-primary-dark bg-primary text-primary-foreground inline-block rounded-full border-2 px-3 py-1 text-xs font-semibold"
 					>
 						{message.text}
 					</span>
 				</a>
 			{:else}
 				<span
-					class="inline-block z-[80] rounded-full border-2 px-3 py-1 text-xs font-semibold border-primary-dark bg-primary text-primary-foreground"
+					class="border-primary-dark bg-primary text-primary-foreground z-[80] inline-block rounded-full border-2 px-3 py-1 text-xs font-semibold"
 				>
 					{message.text}
 				</span>
@@ -149,21 +149,21 @@
 	<HeaderDesktopDropdown />
 
 	{#if isMobileDropdownOpen}
-		<div in:fly={{ delay: 200, x: -800 }} class="flex flex-col flex-1 absolute w-full p-4">
+		<div in:fly={{ delay: 200, x: -800 }} class="absolute flex w-full flex-1 flex-col p-4">
 			<menu class="flex flex-col gap-1">
 				<li class="flex">
 					<a
 						href="/"
-						class="rounded-md p-4 w-full text-2xl text-gray-600 hover:bg-muted dark:text-foreground"
+						class="hover:bg-muted dark:text-foreground w-full rounded-md p-4 text-2xl text-gray-600"
 					>
 						<span class="text-2xl">Hjem</span>
 					</a>
 				</li>
 				{#each routes as route}
 					<li class="flex w-full">
-						<div class="flex flex-col w-full">
+						<div class="flex w-full flex-col">
 							<button
-								class="rounded-md w-full text-left p-4 text-2xl text-gray-600 hover:bg-muted dark:text-foreground"
+								class="hover:bg-muted dark:text-foreground w-full rounded-md p-4 text-left text-2xl text-gray-600"
 								onclick={() => toggleLabel(route.label)}
 							>
 								{route.label}
@@ -180,15 +180,15 @@
 									{#each route.links as subRoute}
 										{@const Icon = subRoute.icon}
 										<li>
-											<a href={subRoute.href} class="flex items-center gap-4 p-2 hover:bg-muted">
+											<a href={subRoute.href} class="hover:bg-muted flex items-center gap-4 p-2">
 												<div class="shrink-0">
 													<Icon class="size-6" />
 												</div>
 												<div class="flex flex-col">
-													<span class="text-gray-600 font-medium dark:text-gray-100">
+													<span class="font-medium text-gray-600 dark:text-gray-100">
 														{subRoute.label}
 													</span>
-													<span class="text-sm text-muted-foreground">
+													<span class="text-muted-foreground text-sm">
 														{subRoute.description}
 													</span>
 												</div>

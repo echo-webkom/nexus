@@ -22,11 +22,11 @@
 		<li>
 			<a href="/for-studenter/{typePath}/{group.slug}">
 				<div
-					class="group flex h-full flex-col gap-3 rounded-lg border-2 p-6 shadow-lg hover:bg-muted"
+					class="group hover:bg-muted flex h-full flex-col gap-3 rounded-lg border-2 p-6 shadow-lg"
 				>
 					<h2 class="text-2xl font-bold">{group.name}</h2>
 					{#if group.description}
-						<p class="line-clamp-3 flex-1 text-slate-700 dark:text-foreground">
+						<p class="dark:text-foreground line-clamp-3 flex-1 text-slate-700">
 							{removeMd(group.description)}
 						</p>
 					{/if}
