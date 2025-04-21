@@ -2,9 +2,7 @@ import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { axis } from '$lib/axis/client.server';
 import { isFuture } from 'date-fns';
-import { db } from '$lib/db/client.server';
-import { and, eq } from 'drizzle-orm';
-import { usersToShoppingListItems } from '@echo-webkom/db/schemas';
+import { ShoppingListService } from '$lib/services/shopping-list-service';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	if (!locals.user) {
@@ -59,21 +57,7 @@ export const actions: Actions = {
 			});
 		}
 
-		const hasLiked = await db.query.usersToShoppingListItems
-			.findFirst({
-				where: (row, { and, eq }) => and(eq(row.userId, user.id), eq(row.itemId, id))
-			})
-			.then((res) => !!res);
-
-		if (hasLiked) {
-			await db
-				.delete(usersToShoppingListItems)
-				.where(
-					and(eq(usersToShoppingListItems.userId, user.id), eq(usersToShoppingListItems.itemId, id))
-				);
-		} else {
-			await db.insert(usersToShoppingListItems).values({ userId: user.id, itemId: id });
-		}
+		ShoppingListService.like(id, user.id);
 
 		return { success: true };
 	}

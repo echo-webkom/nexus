@@ -76,12 +76,12 @@
 	</p>
 </div>
 
-<div class="flex items-center gap-3">
-	<div class="w-full">
+<div class="grid items-center grid-cols-6 md:grid-cols-5 gap-3">
+	<div class="w-full col-span-3 md:col-span-1">
 		<Label for="search">Søk</Label>
 		<Input id="search" type="text" bind:value={search} placeholder="Søk etter stillingsannonser" />
 	</div>
-	<div class="w-full">
+	<div class="w-full col-span-3 md:col-span-1">
 		<Label for="location">Sted</Label>
 		<Select bind:value={location}>
 			<option value="" selected>Alle steder</option>
@@ -90,7 +90,7 @@
 			{/each}
 		</Select>
 	</div>
-	<div class="w-full">
+	<div class="w-full col-span-2 md:col-span-1">
 		<Label for="sortBy">Sorter etter</Label>
 		<Select bind:value={sortBy}>
 			<option value="newest">Nyeste først</option>
@@ -99,7 +99,7 @@
 			<option value="expiresLate">Utløper senere</option>
 		</Select>
 	</div>
-	<div class="w-full">
+	<div class="w-full col-span-2 md:col-span-1">
 		<Label for="jobType">Stillingstype</Label>
 		<Select bind:value={jobType}>
 			<option value="" selected>Alle stillingstyper</option>
@@ -108,7 +108,7 @@
 			{/each}
 		</Select>
 	</div>
-	<div class="w-full">
+	<div class="w-full col-span-2 md:col-span-1">
 		<Label for="company">Bedrift</Label>
 		<Select bind:value={company}>
 			<option value="" selected>Alle bedrifter</option>
@@ -124,39 +124,47 @@
 <p class="text-sm text-muted-foreground">Antall resultater: {matchingJobs.length}</p>
 
 {#if matchingJobs.length > 0}
-	<ul class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+	<ul class="grid grid-cols-1 gap-8 lg:grid-cols-2 mt-4">
 		{#each matchingJobs as job}
 			<li>
-				<a href="/for-studenter/stillingsannonser/{job.slug}">
-					<div
-						class="h-30 flex flex-row items-center gap-8 rounded-xl border-2 p-6 hover:bg-muted transition-colors duration-200 ease-in-out border-border"
-					>
-						<div class="block">
+				<a
+					href={`/for-studenter/stillingsannonser/${job.slug}`}
+					class="block transition-colors duration-200 ease-in-out hover:bg-muted rounded-xl border-2 border-border p-6"
+				>
+					<div class="flex items-center gap-8">
+						<!-- Company Logo -->
+						<div class="flex-shrink-0">
 							<div class="relative h-20 w-20 overflow-hidden rounded-full border-2 bg-white">
-								<img alt="Universitetet i Bergen logo" src={urlFor(job.company.image).url()} />
+								<img
+									src={urlFor(job.company.image).url()}
+									alt={`${job.company.name} logo`}
+									class="object-contain"
+								/>
 							</div>
 						</div>
 
-						<div class="flex h-full w-full flex-col gap-1 overflow-x-hidden">
-							<h3 class="line-clamp-2 text-lg font-semibold">
+						<!-- Job Info -->
+						<div class="flex flex-col justify-between w-full h-full gap-1 overflow-hidden">
+							<h3 class="line-clamp-2 text-lg font-semibold text-foreground">
 								{job.title}
 							</h3>
-							<ul class="mt-auto flex flex-wrap gap-3 gap-y-1 p-0 text-sm">
+
+							<ul class="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted-foreground">
 								<li class="flex items-center gap-2">
 									<Briefcase class="h-4 w-4 text-yellow-800" />
-									{job.company.name}
+									<span>{job.company.name}</span>
 								</li>
 								<li class="flex items-center gap-2">
 									<Pin class="h-4 w-4 text-red-600" />
-									{job.locations.map((location) => location.name).join(', ')}
+									<span>{job.locations.map((l) => l.name).join(', ')}</span>
 								</li>
 								<li class="flex items-center gap-2">
 									<Calendar class="h-4 w-4 text-stone-700 dark:text-stone-400" />
-									{format(job.expiresAt, 'dd.MM.yyyy', { locale: nb })}
+									<span>{format(job.expiresAt, 'dd.MM.yyyy', { locale: nb })}</span>
 								</li>
 								<li class="flex items-center gap-2">
 									<Coffee class="h-4 w-4 text-amber-900" />
-									{JOB_TYPES.find((jt) => jt.value === job.jobType)?.title}
+									<span>{JOB_TYPES.find((jt) => jt.value === job.jobType)?.title}</span>
 								</li>
 							</ul>
 						</div>
