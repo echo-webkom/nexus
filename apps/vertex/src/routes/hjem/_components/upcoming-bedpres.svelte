@@ -7,7 +7,7 @@
 	import { page } from '$app/state';
 
 	let data = $derived(page.data as PageData);
-	let events = $derived(data.events);
+	let events = $derived(data.bedpres);
 </script>
 
 <div class="flex flex-col h-full">
@@ -26,8 +26,10 @@
 				{/if}
 
 				<div>
-					<h3 class="font-semibold group-hover:underline">{event.title}</h3>
-					<p class="text-sm text-muted-foreground">
+					<h3 class="font-semibold group-hover:underline line-clamp-1 text-ellipsis">
+						{event.title}
+					</h3>
+					<p class="text-xs text-muted-foreground">
 						{capitalize(format(event.date, 'eeee dd. MMM', { locale: nb }))}
 						kl. {format(event.date, 'HH:mm')}
 					</p>
