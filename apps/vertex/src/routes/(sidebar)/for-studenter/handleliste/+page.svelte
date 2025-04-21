@@ -5,14 +5,14 @@
 	import Input from '$lib/components/ui/form/input.svelte';
 	import Label from '$lib/components/ui/form/label.svelte';
 	import Heading from '$lib/components/ui/heading.svelte';
-	import { getAuth } from '$lib/context/auth';
+	import { AuthContext } from '$lib/context/auth';
 	import { Heart } from '@lucide/svelte';
 
 	let { data } = $props();
 
 	let items = $derived(data.items.toSorted((a, b) => b.likes.length - a.likes.length));
 
-	let auth = getAuth();
+	let auth = AuthContext.get();
 </script>
 
 <Heading>Hyggkoms handleliste</Heading>

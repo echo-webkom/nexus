@@ -3,7 +3,7 @@
 	import { urlFor } from '$lib/sanity/image';
 	import { ExternalLink } from '@lucide/svelte';
 	import type { PageData } from '../$types';
-	import { format } from 'date-fns';
+	import { format, isFuture, isPast } from 'date-fns';
 	import { nb } from 'date-fns/locale';
 	import { capitalize } from '$lib/strings';
 	import RegistrationButton from './registration-button.svelte';
@@ -14,15 +14,11 @@
 		if (!data.event.registrationStart || !data.event.registrationEnd) {
 			return false;
 		}
-
-		const now = new Date();
-		const start = new Date(data.event.registrationStart);
-		const end = new Date(data.event.registrationEnd);
-		return now >= start && now <= end;
+		return isFuture(data.event.registrationEnd) && isPast(data.event.registrationStart);
 	});
 </script>
 
-<aside class="w-full border-b-2 pr-4 pb-4 md:w-[270px] md:border-r-2 md:border-b-0 md:pb-0">
+<aside class="h-fit w-full border-b-2 pr-4 pb-16 md:w-[270px] md:border-r-2 md:border-b-0 md:pb-0">
 	{#if data.event.company?.image}
 		<a href={data.event.company.website} target="_blank" rel="noopener noreferrer">
 			<div class="mb-4 aspect-square w-full overflow-hidden">
@@ -164,11 +160,9 @@
 				</p>
 			</li>
 		{/if}
-
-		{#if isRegistrationOpen}
-			<li>
-				<RegistrationButton />
-			</li>
-		{/if}
 	</ul>
+
+	{#if isRegistrationOpen}
+		<RegistrationButton />
+	{/if}
 </aside>

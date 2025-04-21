@@ -7,7 +7,7 @@
 	let { data } = $props();
 </script>
 
-<Container class="flex flex-col md:flex-row">
+<Container class="flex flex-col gap-16 md:flex-row md:gap-4">
 	<Sidebar />
 
 	<div class="flex-1">

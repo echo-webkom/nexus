@@ -8,14 +8,14 @@
 	import FloatingFeedbackButton from '$lib/components/floating-feedback-button.svelte';
 	import { ThemeState } from '$lib/state/theme.svelte';
 	import { setThemeContext } from '$lib/context/color-theme';
-	import { setAuthContext } from '$lib/context/auth';
+	import { AuthContext } from '$lib/context/auth';
 
 	let { children, data } = $props();
 
 	let auth = $state({
 		user: data.user
 	});
-	setAuthContext(auth);
+	AuthContext.set(auth);
 
 	$effect.pre(() => {
 		auth.user = data.user;
