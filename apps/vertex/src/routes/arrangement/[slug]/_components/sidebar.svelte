@@ -16,9 +16,16 @@
 		}
 		return isFuture(data.event.registrationEnd) && isPast(data.event.registrationStart);
 	});
+	let totalSpots = $derived.by(() => {
+		return (
+			data.event.spotRanges?.reduce((acc, range) => {
+				return acc + range.spots;
+			}, 0) || 'inf'
+		);
+	});
 </script>
 
-<aside class="h-fit w-full border-b-2 pr-4 pb-16 md:w-[270px] md:border-r-2 md:border-b-0 md:pb-0">
+<aside class="h-fit w-full border-b-2 pb-16 pr-4 md:w-[270px] md:border-b-0 md:border-r-2 md:pb-0">
 	{#if data.event.company?.image}
 		<a href={data.event.company.website} target="_blank" rel="noopener noreferrer">
 			<div class="mb-4 aspect-square w-full overflow-hidden">
@@ -62,6 +69,24 @@
 				{format(new Date(data.event.date), 'dd.MM.yyyy')}
 			</p>
 		</li>
+
+		{#if data.registrationCount.registered > 0}
+			<li class="flex flex-col">
+				<p class="text-muted-foreground text-xs font-bold">Påmeldte</p>
+				<p class="text-sm">
+					{data.registrationCount.registered} / {totalSpots}
+				</p>
+			</li>
+		{/if}
+
+		{#if data.registrationCount.waitlisted > 0}
+			<li class="flex flex-col">
+				<p class="text-muted-foreground text-xs font-bold">Venteliste</p>
+				<p class="text-sm">
+					{data.registrationCount.waitlisted}
+				</p>
+			</li>
+		{/if}
 
 		{#if data.event.contacts}
 			<li class="flex flex-col">

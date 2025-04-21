@@ -29,7 +29,7 @@ func (s *FeedbackService) SubmitFeedback(ctx context.Context, feedback NewFeedba
 		return errors.New("invalid email")
 	}
 
-	query := `
+	query := `--sql
 		INSERT INTO site_feedback (id, email, name, message)
 		VALUES ($1, $2, $3, $4)
 	`
@@ -42,7 +42,7 @@ func (s *FeedbackService) SubmitFeedback(ctx context.Context, feedback NewFeedba
 func (s *FeedbackService) ListFeedback(ctx context.Context) ([]database.SiteFeedback, error) {
 	feedbacks := []database.SiteFeedback{}
 
-	query := `
+	query := `--sql
 		SELECT id, email, name, message, is_read, created_at
 		FROM site_feedback
 		ORDER BY created_at DESC

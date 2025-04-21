@@ -27,7 +27,7 @@ func (s *UserService) FindUserByFeideID(ctx context.Context, feideID string) (da
 		return database.User{}, err
 	}
 
-	query := `
+	query := `--sql
 		SELECT id, name, email, image, alternative_email, degree_id, year, birthday
 		FROM "user"
 		WHERE id = $1

@@ -18,7 +18,7 @@ func New(pool *pgxpool.Pool) *WhitelistService {
 }
 
 func (s *WhitelistService) ListWhitelist(ctx context.Context) ([]database.Whitelist, error) {
-	query := `
+	query := `--sql
 		SELECT email, expires_at, reason FROM whitelist
 	`
 
@@ -43,7 +43,7 @@ func (s *WhitelistService) ListWhitelist(ctx context.Context) ([]database.Whitel
 }
 
 func (s *WhitelistService) GetWhitelist(ctx context.Context, email string) (database.Whitelist, error) {
-	query := `
+	query := `--sql
 		SELECT email, expires_at, reason FROM whitelist WHERE email = $1
 	`
 

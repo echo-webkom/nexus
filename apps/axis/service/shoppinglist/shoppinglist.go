@@ -18,7 +18,7 @@ func New(pool *pgxpool.Pool) *ShoppingListService {
 
 // List the shopping list items with their associated user information.
 func (s *ShoppingListService) ListShoppingItems(ctx context.Context) ([]ShoppingListItemWithUser, error) {
-	query := `
+	query := `--sql
 		SELECT
     		sli.id,
     		sli.name AS item_name,
@@ -56,7 +56,7 @@ func (s *ShoppingListService) ListShoppingItems(ctx context.Context) ([]Shopping
 
 // Creates a new shopping list item.
 func (s *ShoppingListService) CreateShoppingItem(ctx context.Context, name, userID string) (string, error) {
-	query := `
+	query := `--sql
 		INSERT INTO shopping_list_item (name, user_id)
 		VALUES ($1, $2)
 		RETURNING id
@@ -75,7 +75,7 @@ func (s *ShoppingListService) CreateShoppingItem(ctx context.Context, name, user
 
 // Likes a shopping list item for a user.
 func (s *ShoppingListService) LikeShoppingListItem(ctx context.Context, itemID, userID string) error {
-	query := `
+	query := `--sql
 		INSERT INTO users_to_shopping_list_items (user_id, item_id)
 		VALUES ($1, $2)
 		ON CONFLICT (user_id, item_id) DO NOTHING
@@ -88,7 +88,7 @@ func (s *ShoppingListService) LikeShoppingListItem(ctx context.Context, itemID, 
 
 // Removes a like from a shopping list item for a user.
 func (s *ShoppingListService) UnlikeShoppingListItem(ctx context.Context, itemID, userID string) error {
-	query := `
+	query := `--sql
 		DELETE FROM users_to_shopping_list_items
 		WHERE user_id = $1 AND item_id = $2
 	`
@@ -99,7 +99,7 @@ func (s *ShoppingListService) UnlikeShoppingListItem(ctx context.Context, itemID
 
 // Checks if a user has liked a shopping list item.
 func (s *ShoppingListService) HasUserLikedItem(ctx context.Context, userID, itemID string) (bool, error) {
-	query := `
+	query := `--sql
 		SELECT EXISTS (
 			SELECT 1
 			FROM users_to_shopping_list_items

@@ -10,10 +10,13 @@ export const load: PageServerLoad = async ({ params }) => {
 		error(404, 'Finner ikke arrangmentet');
 	}
 
+	const registrationCount = await axis.events.registrations(event._id);
+
 	return {
 		event: {
 			...event,
 			body: await marked(event.body ?? '')
-		}
+		},
+		registrationCount
 	};
 };
