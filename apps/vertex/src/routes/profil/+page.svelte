@@ -57,7 +57,7 @@
 	};
 </script>
 
-<Container class="flex-col max-w-3xl">
+<Container class="max-w-3xl flex-col">
 	<Heading>Din profil</Heading>
 
 	<div class="flex flex-col gap-6 md:flex-row">
@@ -101,17 +101,17 @@
 		<div>
 			<div>
 				<span
-					class="text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+					class="text-sm leading-none font-semibold peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 					>Navn</span
 				>
-				<p class="break-words py-1 text-lg">{auth.user!.name!}</p>
+				<p class="py-1 text-lg break-words">{auth.user!.name!}</p>
 			</div>
 			<div>
 				<span
-					class="text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+					class="text-sm leading-none font-semibold peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 					>E-post</span
 				>
-				<p class="break-words py-1 text-lg">{auth.user!.email}</p>
+				<p class="py-1 text-lg break-words">{auth.user!.email}</p>
 			</div>
 		</div>
 	</div>
@@ -155,7 +155,7 @@
 				name="alternativeEmail"
 				bind:value={alternativeEmail}
 			/>
-			<p class="text-sm text-muted-foreground">Om du ønsker å få e-post tilsendt en annen mail.</p>
+			<p class="text-muted-foreground text-sm">Om du ønsker å få e-post tilsendt en annen mail.</p>
 		</div>
 		<div class="space-y-2">
 			<Label for="degree"><span>Studieretning</span></Label>
@@ -185,7 +185,7 @@
 		<div class="space-y-2">
 			<Label for="birthday">Bursdag</Label>
 			<Input id="birthday" type="date" bind:value={birthday} name="birthday" />
-			<p class="text-sm text-muted-foreground">
+			<p class="text-muted-foreground text-sm">
 				Legg til bursdagen din, og få den vist på echoscreen i lesesalen!🎉
 			</p>
 		</div>

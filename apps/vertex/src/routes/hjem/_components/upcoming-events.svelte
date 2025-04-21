@@ -13,14 +13,14 @@
 	{#each events as event}
 		<a
 			href="/arrangement/{event.slug}"
-			class="flex flex-col justify-center group hover:bg-muted gap-4 p-4 h-[75px] lg:h-[79px]"
+			class="group hover:bg-muted flex h-[75px] flex-col justify-center gap-4 p-4 lg:h-[79px]"
 		>
 			<div class="flex items-center gap-4">
 				<div>
-					<h3 class="font-semibold group-hover:underline line-clamp-1 text-ellipsis">
+					<h3 class="line-clamp-1 font-semibold text-ellipsis group-hover:underline">
 						{event.title}
 					</h3>
-					<p class="text-xs text-muted-foreground">
+					<p class="text-muted-foreground text-xs">
 						{capitalize(format(event.date, 'eeee dd. MMM', { locale: nb }))}
 						kl. {format(event.date, 'HH:mm')}
 					</p>

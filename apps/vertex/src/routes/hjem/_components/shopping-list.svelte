@@ -14,8 +14,8 @@
 	let auth = getAuth();
 </script>
 
-<div class="p-4 flex flex-col h-full gap-4">
-	<div class="border-2 rounded-xl h-full p-4">
+<div class="flex h-full flex-col gap-4 p-4">
+	<div class="h-full rounded-xl border-2 p-4">
 		{#if shoppingList.length > 0}
 			<ul>
 				{#each sortedList as item}
@@ -44,12 +44,12 @@
 								}}
 							>
 								<input type="hidden" name="id" value={item.id} />
-								<button class="cursor-pointer group">
+								<button class="group cursor-pointer">
 									<Heart
 										class={cn(
-											'text-muted-foreground size-5 group-hover:text-red-600 group-hover:fill-red-300 transition-all active:scale-95',
+											'text-muted-foreground size-5 transition-all group-hover:fill-red-300 group-hover:text-red-600 active:scale-95',
 											{
-												'text-red-500 fill-red-500': hasLiked
+												'fill-red-500 text-red-500': hasLiked
 											}
 										)}
 									/>

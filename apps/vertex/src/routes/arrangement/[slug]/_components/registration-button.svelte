@@ -33,7 +33,7 @@
 		<DialogDescription>
 			Fyll ut de nødvendige feltene for å registrere deg til arrangementet.
 		</DialogDescription>
-		<form action="?/register" class="flex flex-col gap-2 mt-4" method="post">
+		<form action="?/register" class="mt-4 flex flex-col gap-2" method="post">
 			{#each data.event.additionalQuestions ?? [] as question}
 				{#if question.type === 'text'}
 					<div class="flex flex-col gap-1">
@@ -58,7 +58,7 @@
 							id={question.title}
 							name={question.title}
 							rows="4"
-							class="border border-gray-300 rounded-md p-2"
+							class="rounded-md border border-gray-300 p-2"
 							placeholder="Fyll her..."
 						></textarea>
 					</div>

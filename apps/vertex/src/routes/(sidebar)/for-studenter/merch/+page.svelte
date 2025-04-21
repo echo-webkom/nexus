@@ -13,7 +13,7 @@
 		<li>
 			<a href="/for-studenter/merch/{item.slug}"
 				><div
-					class="group flex h-full justify-between gap-3 rounded-lg border-2 p-6 shadow-lg hover:bg-muted"
+					class="group hover:bg-muted flex h-full justify-between gap-3 rounded-lg border-2 p-6 shadow-lg"
 				>
 					<div class="flex flex-col gap-3">
 						<h2 class="text-2xl font-bold">{item.title}</h2>

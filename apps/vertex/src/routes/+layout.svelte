@@ -37,10 +37,10 @@
 	<Toaster richColors closeButton bind:theme={theme.current} />
 	<FloatingFeedbackButton />
 
-	<div class="flex flex-col w-full min-h-screen">
+	<div class="flex min-h-screen w-full flex-col">
 		<Header />
 
-		<div class="flex-1 min-h-[500px]">
+		<div class="min-h-[500px] flex-1">
 			{@render children()}
 		</div>
 

@@ -22,7 +22,7 @@
 	</Tooltip.Trigger>
 	<Tooltip.Portal>
 		<Tooltip.Content
-			class="border-2 border-primary-dark bg-primary py-1 font-medium px-3 rounded-2xl text-primary-foreground text-sm"
+			class="border-primary-dark bg-primary text-primary-foreground rounded-2xl border-2 px-3 py-1 text-sm font-medium"
 		>
 			<Tooltip.Arrow class="text-primary-dark" />
 			{@render children?.()}

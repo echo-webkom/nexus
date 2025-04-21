@@ -12,7 +12,7 @@
 <li>
 	<a
 		class={[
-			'font-medium hover:underline rounded-xl dark:text-foreground hover:bg-muted p-2 h-10 text-gray-600',
+			'dark:text-foreground hover:bg-muted h-10 rounded-xl p-2 font-medium text-gray-600 hover:underline',
 			className
 		]}
 		{...props}>{@render children()}</a

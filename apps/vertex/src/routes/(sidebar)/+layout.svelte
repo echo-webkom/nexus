@@ -8,7 +8,7 @@
 <Container class="max-w-[1400px]">
 	<StaticPagesSidebar />
 
-	<div class="w-full h-full">
+	<div class="h-full w-full">
 		{@render children()}
 	</div>
 </Container>

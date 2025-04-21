@@ -23,15 +23,15 @@
 		<img
 			src={urlFor(movie1.image).url()}
 			alt={movie1.title}
-			class="w-full h-[300px] object-contain"
+			class="h-[300px] w-full object-contain"
 		/>
 
 		<div
-			class="absolute p-2 bottom-0 -translate-y-1 w-full h-[100px] z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+			class="absolute bottom-0 z-10 h-[100px] w-full -translate-y-1 p-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
 		>
-			<div class="bg-muted rounded-2xl border-2 flex flex-col items-center justify-center h-full">
+			<div class="bg-muted flex h-full flex-col items-center justify-center rounded-2xl border-2">
 				<h3 class="text-muted-foreground text-lg font-semibold">{movie1.title}</h3>
-				<p class="text-sm text-muted-foreground">
+				<p class="text-muted-foreground text-sm">
 					{formatDate(movie1.date)}
 				</p>
 			</div>
@@ -44,14 +44,14 @@
 				<img
 					src={urlFor(movie2.image).url()}
 					alt={movie2.title}
-					class="w-full h-[150px] object-contain"
+					class="h-[150px] w-full object-contain"
 				/>
 
-				<div class="absolute p-2 bottom-0 -translate-y-1 w-full h-[50px] z-10">
+				<div class="absolute bottom-0 z-10 h-[50px] w-full -translate-y-1 p-2">
 					<div
-						class="bg-muted/70 rounded-lg border-2 flex flex-col items-center justify-center h-full"
+						class="bg-muted/70 flex h-full flex-col items-center justify-center rounded-lg border-2"
 					>
-						<p class="text-sm text-muted-foreground">
+						<p class="text-muted-foreground text-sm">
 							{formatDate(movie2.date)}
 						</p>
 					</div>
@@ -63,14 +63,14 @@
 					<img
 						src={urlFor(movie3.image).url()}
 						alt={movie3.title}
-						class="w-full h-[150px] object-contain"
+						class="h-[150px] w-full object-contain"
 					/>
 
-					<div class="absolute p-2 bottom-0 -translate-y-1 w-full h-[50px] z-10">
+					<div class="absolute bottom-0 z-10 h-[50px] w-full -translate-y-1 p-2">
 						<div
-							class="bg-muted rounded-lg border-2 flex flex-col items-center justify-center h-full"
+							class="bg-muted flex h-full flex-col items-center justify-center rounded-lg border-2"
 						>
-							<p class="text-sm text-muted-foreground">
+							<p class="text-muted-foreground text-sm">
 								{formatDate(movie3.date)}
 							</p>
 						</div>

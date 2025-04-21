@@ -7,7 +7,7 @@
 
 <button onclick={theme.toggle}>
 	<span class="sr-only">Toggle dark mode</span>
-	<Sun class="hidden dark:block size-6" />
-	<Moon class="block dark:hidden size-6" />
+	<Sun class="hidden size-6 dark:block" />
+	<Moon class="block size-6 dark:hidden" />
 	<span class="sr-only">Toggle light mode</span>
 </button>

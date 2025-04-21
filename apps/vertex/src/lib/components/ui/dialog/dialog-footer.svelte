@@ -7,6 +7,6 @@
 	let { children, class: className, ...props }: Props = $props();
 </script>
 
-<div class={cn('flex w-full mt-4 justify-end gap-2', className)} {...props}>
+<div class={cn('mt-4 flex w-full justify-end gap-2', className)} {...props}>
 	{@render children?.()}
 </div>

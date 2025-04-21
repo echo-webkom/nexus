@@ -12,10 +12,10 @@
 		<li>
 			<a href="/for-studenter/motereferater/{minute._id}"
 				><div
-					class="group flex items-center w-full justify-between px-5 py-5 transition-all hover:bg-muted hover:py-10"
+					class="group hover:bg-muted flex w-full items-center justify-between px-5 py-5 transition-all hover:py-10"
 				>
 					<div class="flex w-full flex-col sm:flex-row sm:items-center sm:justify-between">
-						<p class="break-words py-1 text-xl">{type}</p>
+						<p class="py-1 text-xl break-words">{type}</p>
 						<div class="flex items-center gap-2">
 							<p>{format(minute.date, 'dd. eee. yyyy', { locale: nb })}</p>
 

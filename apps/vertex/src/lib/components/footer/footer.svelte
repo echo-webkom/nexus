@@ -46,12 +46,12 @@
 </script>
 
 <footer
-	class="relative rounded-t-[40px] border-2 border-footer-border bg-footer px-10 py-24 text-footer-foreground"
+	class="border-footer-border bg-footer text-footer-foreground relative rounded-t-[40px] border-2 px-10 py-24"
 >
 	<!-- Latest commit -->
 	{#if displayHash}
 		<div class="absolute bottom-0 left-0 p-1.5">
-			<p class="font-mono text-xs text-muted-foreground">
+			<p class="text-muted-foreground font-mono text-xs">
 				<a
 					class="flex items-center gap-1 hover:underline"
 					href="https://github.com/echo-webkom/echo-web-mono/commit/{PUBLIC_COMMIT_HASH}"
@@ -65,7 +65,7 @@
 
 	<!-- Link to RSS feed -->
 	<div class="absolute bottom-0 left-1/2 -translate-x-1/2 p-1.5">
-		<ul class="flex flex-row gap-2 font-mono text-xs text-muted-foreground">
+		<ul class="text-muted-foreground flex flex-row gap-2 font-mono text-xs">
 			<li>
 				<a class="flex items-center gap-1 hover:underline" href="/feed">
 					<Rss class="size-4" />

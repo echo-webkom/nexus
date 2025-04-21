@@ -9,7 +9,7 @@
 
 <div
 	class={cn(
-		'mx-auto w-full px-4 sm:px-6 lg:px-8 gap-4 max-w-[1200px] flex flex-row py-10',
+		'mx-auto flex w-full max-w-[1200px] flex-row gap-4 px-4 py-10 sm:px-6 lg:px-8',
 		className
 	)}
 	{...props}

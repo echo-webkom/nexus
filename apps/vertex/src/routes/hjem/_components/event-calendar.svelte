@@ -157,18 +157,18 @@
 
 <svelte:window onresize={() => (innerWidth = window.innerWidth)} />
 
-<div class="flex flex-col gap-4 h-full">
-	<div class="flex items-center justify-between h-[50px]">
+<div class="flex h-full flex-col gap-4">
+	<div class="flex h-[50px] items-center justify-between">
 		<div></div>
 
-		<div class="flex items-center w-fit overflow-hidden p-1 border-2 rounded-full">
+		<div class="flex w-fit items-center overflow-hidden rounded-full border-2 p-1">
 			<button
 				onclick={() => (date = subDays(date, daysVisible))}
-				class="size-8 flex items-center justify-center"
+				class="flex size-8 items-center justify-center"
 			>
 				<ArrowLeft class="text-muted-foreground size-4" />
 			</button>
-			<p class="py-2 px-1 h-8 font-medium font-mono flex items-center justify-center rounded-xl">
+			<p class="flex h-8 items-center justify-center rounded-xl px-1 py-2 font-mono font-medium">
 				{#if startWeek == endWeek}
 					Uke {startWeek.toString().padStart(2, '0')}
 				{:else}
@@ -177,7 +177,7 @@
 			</p>
 			<button
 				onclick={() => (date = addDays(date, daysVisible))}
-				class="size-8 flex items-center justify-center"
+				class="flex size-8 items-center justify-center"
 			>
 				<ArrowRight class="text-muted-foreground size-4" />
 			</button>
@@ -187,19 +187,19 @@
 					date = startOfWeek(TODAY);
 					isDirty = false;
 				}}
-				class="size-8 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+				class="flex size-8 items-center justify-center disabled:cursor-not-allowed disabled:opacity-50"
 				disabled={date.getTime() === startOfWeek(TODAY).getTime()}
 			>
 				<RotateCcw class="text-muted-foreground size-4" />
 			</button>
 
-			<div class="w-[2px] h-8 mx-2 bg-border"></div>
+			<div class="bg-border mx-2 h-8 w-[2px]"></div>
 
 			{#each [1, 3, 5, 7] as day}
 				<button
 					onclick={() => handleChangeDaysVisible(day)}
 					class={cn(
-						'py-2 px-3 h-8 font-medium flex items-center justify-center rounded-full font-mono',
+						'flex h-8 items-center justify-center rounded-full px-3 py-2 font-mono font-medium',
 						{
 							'bg-border': daysVisible === day
 						}
@@ -210,7 +210,7 @@
 	</div>
 
 	<div
-		class="grid grid-cols-7 gap-[2px] bg-border h-full rounded-2xl border-2 overflow-hidden"
+		class="bg-border grid h-full grid-cols-7 gap-[2px] overflow-hidden rounded-2xl border-2"
 		style="grid-template-columns: repeat({daysVisible}, minmax(0, 1fr))"
 	>
 		{#each { length: daysVisible }, i}
@@ -225,21 +225,21 @@
 			{@const eventsToday = calendarEvents
 				.filter((event) => isEventOnDate(currentDate, event))
 				.toSorted((a, b) => a.start.getTime() - b.start.getTime())}
-			<div class="flex flex-col h-full">
+			<div class="flex h-full flex-col">
 				<div
-					class="border-b-2 p-3 text-center bg-muted h-16 flex items-center justify-center flex-col font-medium"
+					class="bg-muted flex h-16 flex-col items-center justify-center border-b-2 p-3 text-center font-medium"
 				>
 					{#if isToday}
 						<p>I dag</p>
 					{:else}
 						<p>{day}</p>
-						<p class="text-sm text-muted-foreground">
+						<p class="text-muted-foreground text-sm">
 							{formattedDate}
 						</p>
 					{/if}
 				</div>
 
-				<div class="bg-background py-4 px-1 flex-1">
+				<div class="bg-background flex-1 px-1 py-4">
 					{#each eventsToday as event}
 						{@const isActive = calenderTypes.find((type) => type.type === event.type)?.active}
 						{@const typeIdx = calenderTypes.findIndex((type) => type.type === event.type)}
@@ -247,7 +247,7 @@
 							<a
 								href={`/arrangement/${event.slug}`}
 								class={cn(
-									'border-l-2 hover:underline block line-clamp-1 text-nowrap text-ellipsis text-sm w-full py-2',
+									'line-clamp-1 block w-full border-l-2 py-2 text-sm text-nowrap text-ellipsis hover:underline',
 									typeColors[typeIdx].row
 								)}
 							>
@@ -260,7 +260,7 @@
 		{/each}
 	</div>
 
-	<div class="flex items-center flex-wrap h-[30px] text-[10px] md:text-xs pl-3 gap-x-2">
+	<div class="flex h-[30px] flex-wrap items-center gap-x-2 pl-3 text-[10px] md:text-xs">
 		{#each calenderTypes as type, i}
 			<button
 				onclick={() => (calenderTypes[i].active = !calenderTypes[i].active)}

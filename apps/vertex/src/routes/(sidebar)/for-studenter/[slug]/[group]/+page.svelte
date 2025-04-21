@@ -35,7 +35,7 @@
 	let type = $derived(GROUP_TYPES.find((type) => type.value === data.group.groupType)?.title);
 </script>
 
-<div class="flex-col max-w-4xl gap-8 py-0">
+<div class="max-w-4xl flex-col gap-8 py-0">
 	<div>
 		<p>{type}</p>
 		<Heading>
@@ -44,7 +44,7 @@
 	</div>
 
 	{#if hasSocials}
-		<section class="flex items-center gap-4 mb-8">
+		<section class="mb-8 flex items-center gap-4">
 			{#each socials as social}
 				{@const Icon = social.icon}
 				{#if social.url}
@@ -52,7 +52,7 @@
 						href={social.url}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="flex items-center gap-2 rounded-lg border-2 p-2 text-slate-700 dark:text-slate-200 hover:bg-muted"
+						class="hover:bg-muted flex items-center gap-2 rounded-lg border-2 p-2 text-slate-700 dark:text-slate-200"
 					>
 						<Icon class="h-5 w-5" />
 						<span>{social.name}</span>
@@ -69,14 +69,14 @@
 	{/if}
 
 	{#if data.group.image}
-		<div class="mx-auto w-fit mb-8">
+		<div class="mx-auto mb-8 w-fit">
 			<img alt={data.group.name} class="rounded-lg border-2" src={urlFor(data.group.image).url()} />
 		</div>
 	{/if}
 
 	{#if data.group.members}
 		<section>
-			<h2 id="medlemmer" class="group flex items-center mb-4 font-semibold tracking-tight text-2xl">
+			<h2 id="medlemmer" class="group mb-4 flex items-center text-2xl font-semibold tracking-tight">
 				Medlemmer
 			</h2>
 
@@ -84,7 +84,7 @@
 				{#each data.group.members as member}
 					<li class="flex flex-col gap-2 p-5 text-center">
 						<span
-							class="relative flex h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 mx-auto"
+							class="relative mx-auto flex h-24 w-24 shrink-0 overflow-hidden rounded-full border-2"
 						>
 							{#if member.profile?.picture}
 								<img

@@ -7,8 +7,8 @@
 	import ShoppingList from './_components/shopping-list.svelte';
 </script>
 
-<div class="flex flex-col max-w-7xl gap-8 mx-auto py-10 px-4 md:px-6">
-	<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-10 md:px-6">
+	<div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
 		<!-- Calendar -->
 		<div class="h-[400px] lg:col-span-2">
 			<EventCalendar />
@@ -17,27 +17,27 @@
 		<!-- Jobs Marquee -->
 
 		<!-- Events -->
-		<div class="rounded-2xl border-2 h-[600px] lg:h-[632px] overflow-hidden">
+		<div class="h-[600px] overflow-hidden rounded-2xl border-2 lg:h-[632px]">
 			<UpcomingEvents />
 		</div>
 		<div class="grid gap-8">
 			<!-- Bedpresses -->
-			<div class="rounded-2xl border-2 h-[300px] overflow-hidden">
+			<div class="h-[300px] overflow-hidden rounded-2xl border-2">
 				<UpcomingBedpres />
 			</div>
 			<!-- Posts -->
-			<div class="rounded-2xl border-2 h-[300px] overflow-hidden">
+			<div class="h-[300px] overflow-hidden rounded-2xl border-2">
 				<LatestPosts />
 			</div>
 		</div>
 
 		<!-- Movies -->
-		<div class="rounded-2xl border-2 h-[300px] overflow-hidden">
+		<div class="h-[300px] overflow-hidden rounded-2xl border-2">
 			<Movies />
 		</div>
 
 		<!-- Shopping -->
-		<div class="rounded-2xl border-2 h-[300px]">
+		<div class="h-[300px] rounded-2xl border-2">
 			<ShoppingList />
 		</div>
 	</div>
