@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { HTMLLabelAttributes } from 'svelte/elements';
+	import { cn } from '$lib/cn';
 
 	type Props = HTMLLabelAttributes & {
 		required?: boolean;
@@ -9,10 +10,10 @@
 </script>
 
 <label
-	class={[
+	class={cn(
 		'text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
 		className
-	]}
+	)}
 	{...props}
 >
 	{@render children?.()}

@@ -7,7 +7,7 @@
 
 	import ThemeButton from './theme-button.svelte';
 	import { routes } from '$lib/routes';
-	import { browser } from '$app/environment';
+	import { browser, dev } from '$app/environment';
 	import { ChevronDown, Menu, X } from '@lucide/svelte';
 	import { cn } from '$lib/cn';
 	import { fly, slide } from 'svelte/transition';
@@ -78,6 +78,12 @@
 		'h-full max-h-screen absolute overflow-y-auto': isMobileDropdownOpen
 	})}
 >
+	{#if dev}
+		<div class="bg-destructive text-destructive-foreground p-2">
+			<p class="text-center font-medium text-sm">Developer mode</p>
+		</div>
+	{/if}
+
 	<header class="relative flex items-center mx-auto h-20 max-w-7xl justify-between p-4">
 		<div class="flex items-center gap-8">
 			<a href="/">
