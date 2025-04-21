@@ -20,11 +20,11 @@ func New(pool *pgxpool.Pool) *RegistrationService {
 func (s *RegistrationService) Count(ctx context.Context, happeningID string) (RegistrationCount, error) {
 	var count RegistrationCount
 
-	query := `
+	query := `--sql
 		SELECT
 			COUNT(*) FILTER (WHERE status = 'registered') AS registered,
-			COUNT(*) FILTER (WHERE status = 'waitlisted') AS waitlisted
-		FROM registrations
+			COUNT(*) FILTER (WHERE status = 'waiting') AS waitlisted
+		FROM registration
 		WHERE happening_id = $1
 	`
 

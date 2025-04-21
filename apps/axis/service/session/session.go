@@ -21,7 +21,7 @@ func New(db *pgxpool.Pool) *SessionService {
 }
 
 func (s *SessionService) FindSessionByUserID(ctx context.Context, userID string) (sesh database.Session, err error) {
-	query := `
+	query := `--sql
 		SELECT session_token, user_id, expires_at
 		FROM session
 		WHERE user_id = $1
@@ -39,7 +39,7 @@ func (s *SessionService) FindSessionByUserID(ctx context.Context, userID string)
 func (s *SessionService) FindSessionBySessionID(ctx context.Context, sessionID string) (database.Session, error) {
 	var session database.Session
 
-	query := `
+	query := `--sql
 		SELECT session_token, user_id, expires_at
 		FROM session
 		WHERE session_token = $1
@@ -68,7 +68,7 @@ func (s *SessionService) CreateSession(ctx context.Context, userID string) (sesh
 
 	expiresAt := time.Now().AddDate(0, 0, 30)
 
-	query := `
+	query := `--sql
 		INSERT INTO session (session_token, user_id, expires)
 		VALUES $1, $2, $3
 	`
@@ -83,7 +83,7 @@ func (s *SessionService) CreateSession(ctx context.Context, userID string) (sesh
 
 // Deletes a session from the database.
 func (s *SessionService) DeleteSession(ctx context.Context, sessionID string) error {
-	query := `
+	query := `--sql
 		DELETE FROM session
 		WHERE session_token = $1
 	`

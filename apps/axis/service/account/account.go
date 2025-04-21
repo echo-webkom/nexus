@@ -20,7 +20,7 @@ func New(pool *pgxpool.Pool) *AccountService {
 func (s *AccountService) FindAccountByProvider(ctx context.Context, provider, id string) (Account, error) {
 	var account Account
 
-	query := `
+	query := `--sql
 		SELECT user_id, provider, provider_account_id
 		FROM account
 		WHERE provider = $1 AND provider_account_id = $2
