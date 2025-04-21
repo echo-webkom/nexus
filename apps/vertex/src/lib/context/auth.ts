@@ -1,20 +1,21 @@
 import type { ValidatedUser } from '$lib/auth/validate';
 import { setContext, getContext } from 'svelte';
 
-const AUTH_CONTEXT_KEY = Symbol('auth');
+const AUTH_CTX = Symbol('auth');
 
-export type AuthContext = {
+type AuthContext = {
 	user: ValidatedUser | null;
 };
 
-export const setAuthContext = (ctx: AuthContext) => {
-	setContext(AUTH_CONTEXT_KEY, ctx);
-};
-
-export const getAuth = () => {
-	const ctx = getContext<AuthContext>(AUTH_CONTEXT_KEY);
-	if (!ctx) {
-		throw new Error('No auth context found');
+export const AuthContext = {
+	set: (ctx: AuthContext) => {
+		setContext(AUTH_CTX, ctx);
+	},
+	get: () => {
+		const ctx = getContext<AuthContext>(AUTH_CTX);
+		if (!ctx) {
+			throw new Error('No auth context found');
+		}
+		return ctx;
 	}
-	return ctx;
 };

@@ -5,13 +5,13 @@
 	import type { PageData } from '../$types';
 	import { cn } from '$lib/cn';
 	import { enhance } from '$app/forms';
-	import { getAuth } from '$lib/context/auth';
+	import { AuthContext } from '$lib/context/auth';
 
 	let data = $derived(page.data as PageData);
 	// svelte-ignore state_referenced_locally
 	let shoppingList = $state(data.shoppingList.slice(0, 4));
 	let sortedList = $derived(shoppingList.toSorted((a, b) => b.likes.length - a.likes.length));
-	let auth = getAuth();
+	let auth = AuthContext.get();
 </script>
 
 <div class="flex h-full flex-col gap-4 p-4">

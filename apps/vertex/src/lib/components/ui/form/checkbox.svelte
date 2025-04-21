@@ -17,7 +17,9 @@
 <Checkbox.Root
 	{id}
 	class={cn(
-		'border-primary flex size-5 items-center justify-center rounded-md border',
+		'flex size-4 items-center justify-center rounded-md border-2',
+		'transition duration-200 ease-in-out',
+		'focus:ring-primary focus:ring-2 focus:ring-offset-2 focus:outline-none',
 		{
 			'bg-primary text-primary-foreground border-transparent': checked
 		},
@@ -29,9 +31,9 @@
 >
 	{#snippet children({ checked, indeterminate })}
 		{#if indeterminate}
-			<Minus class="size-4" />
+			<Minus class="size-4 stroke-3" />
 		{:else if checked}
-			<Check class="size-4" />
+			<Check class="size-4 stroke-3" />
 		{/if}
 	{/snippet}
 </Checkbox.Root>

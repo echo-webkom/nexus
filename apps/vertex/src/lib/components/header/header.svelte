@@ -13,7 +13,7 @@
 	import { fly, slide } from 'svelte/transition';
 	import { onNavigate } from '$app/navigation';
 	import { getRandomMessage } from '$lib/random-message';
-	import { getAuth } from '$lib/context/auth';
+	import { AuthContext } from '$lib/context/auth';
 	import { enhance } from '$app/forms';
 	import { initials } from '$lib/strings';
 	import Avatar from '../ui/avatar.svelte';
@@ -29,7 +29,7 @@
 	});
 	setHeaderContext(context);
 
-	let auth = getAuth();
+	let auth = AuthContext.get();
 
 	const toggleMenu = () => {
 		if (innerWidth < 768) {

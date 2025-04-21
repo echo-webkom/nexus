@@ -3,7 +3,7 @@
 	import Heading from '$lib/components/ui/heading.svelte';
 	import Avatar from '$lib/components/ui/avatar.svelte';
 	import Checkbox from '$lib/components/ui/form/checkbox.svelte';
-	import { getAuth } from '$lib/context/auth';
+	import { AuthContext } from '$lib/context/auth';
 	import { initials } from '$lib/strings.js';
 	import { enhance } from '$app/forms';
 	import { toast } from 'svelte-sonner';
@@ -17,7 +17,7 @@
 
 	let { data } = $props();
 
-	let auth = getAuth();
+	let auth = AuthContext.get();
 
 	let degrees = $derived(data.degrees);
 	let isLoading = $state(false);
