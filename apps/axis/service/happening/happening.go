@@ -30,8 +30,11 @@ func (s *HappeningService) GetHappeningById(ctx context.Context, id string) (*da
 }
 
 func (s *HappeningService) GetAllHappenings(ctx context.Context) ([]database.Happening, error) {
-	rows, err := s.pool.Query(ctx, `
-		SELECT id, title FROM happening`)
+	query := `
+		SELECT id, title FROM happening
+	`
+
+	rows, err := s.pool.Query(ctx, query)
 	if err != nil {
 		return nil, err
 	}

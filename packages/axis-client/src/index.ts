@@ -147,6 +147,13 @@ export class AxisClient {
         { happeningTypes: types, n }
       );
     },
+
+    registrations: async (happeningId: string) => {
+      return await this.#axis.get(`registrations/${happeningId}/count`).json<{
+        waitlisted: number;
+        registered: number;
+      }>();
+    },
   };
 
   readonly groups = {

@@ -21,11 +21,13 @@ func New(db *pgxpool.Pool) *SessionService {
 }
 
 func (s *SessionService) FindSessionByUserID(ctx context.Context, userID string) (sesh database.Session, err error) {
-	err = s.pool.QueryRow(ctx, `
+	query := `
 		SELECT session_token, user_id, expires_at
 		FROM session
 		WHERE user_id = $1
-	`, userID).Scan(
+	`
+
+	err = s.pool.QueryRow(ctx, query, userID).Scan(
 		&sesh.SessionToken,
 		&sesh.UserID,
 		&sesh.Expires,
@@ -37,11 +39,13 @@ func (s *SessionService) FindSessionByUserID(ctx context.Context, userID string)
 func (s *SessionService) FindSessionBySessionID(ctx context.Context, sessionID string) (database.Session, error) {
 	var session database.Session
 
-	err := s.pool.QueryRow(ctx, `
+	query := `
 		SELECT session_token, user_id, expires_at
 		FROM session
 		WHERE session_token = $1
-	`, sessionID).Scan(
+	`
+
+	err := s.pool.QueryRow(ctx, query, sessionID).Scan(
 		&session.SessionToken,
 		&session.UserID,
 		&session.Expires,
@@ -64,10 +68,12 @@ func (s *SessionService) CreateSession(ctx context.Context, userID string) (sesh
 
 	expiresAt := time.Now().AddDate(0, 0, 30)
 
-	_, err = s.pool.Exec(ctx, `
+	query := `
 		INSERT INTO session (session_token, user_id, expires)
 		VALUES $1, $2, $3
-	`, id, userID, expiresAt)
+	`
+
+	_, err = s.pool.Exec(ctx, query, id, userID, expiresAt)
 	if err != nil {
 		return "", time.Now(), nil
 	}
@@ -77,10 +83,12 @@ func (s *SessionService) CreateSession(ctx context.Context, userID string) (sesh
 
 // Deletes a session from the database.
 func (s *SessionService) DeleteSession(ctx context.Context, sessionID string) error {
-	_, err := s.pool.Exec(ctx, `
+	query := `
 		DELETE FROM session
 		WHERE session_token = $1
-	`, sessionID)
+	`
+
+	_, err := s.pool.Exec(ctx, query, sessionID)
 
 	return err
 }
