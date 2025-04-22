@@ -5,6 +5,16 @@ import (
 	"time"
 )
 
+type RegistrationStatus string
+
+const (
+	RegistrationStatusRegistered   RegistrationStatus = "registered"
+	RegistrationStatusWaitlisted   RegistrationStatus = "waiting"
+	RegistrationStatusUnregistered RegistrationStatus = "unregistered"
+	RegistrationStatusPending      RegistrationStatus = "pending"
+	RegistrationStatusRemoved      RegistrationStatus = "removed"
+)
+
 type AccessRequests struct {
 	ID        string    `json:"id"`
 	Email     string    `json:"email"`
@@ -13,29 +23,29 @@ type AccessRequests struct {
 }
 
 type Account struct {
-	UserID            string  `json:"userID"`
+	UserID            string  `json:"userId"`
 	Type              string  `json:"type"`
 	Provider          string  `json:"provider"`
-	ProviderAccountID string  `json:"providerAccountID"`
+	ProviderAccountID string  `json:"providerAccountId"`
 	RefreshToken      *string `json:"refreshToken"`
 	AccessToken       *string `json:"accessToken"`
 	ExpiresAt         *int    `json:"expiresAt"`
 	TokenType         *string `json:"tokenType"`
 	Scope             *string `json:"scope"`
-	IDToken           *string `json:"iDToken"`
+	IDToken           *string `json:"idToken"`
 	SessionState      *string `json:"sessionState"`
 }
 
 type Answer struct {
-	UserID      string           `json:"userID"`
-	HappeningID string           `json:"happeningID"`
-	QuestionID  string           `json:"questionID"`
+	UserID      string           `json:"userId"`
+	HappeningID string           `json:"happeningId"`
+	QuestionID  string           `json:"questionId"`
 	Answer      *json.RawMessage `json:"answer"`
 }
 
 type BanInfo struct {
 	ID        int       `json:"id"`
-	UserID    string    `json:"userID"`
+	UserID    string    `json:"userId"`
 	BannedBy  string    `json:"bannedBy"`
 	Reason    string    `json:"reason"`
 	CreatedAt time.Time `json:"createdAt"`
@@ -43,17 +53,17 @@ type BanInfo struct {
 }
 
 type CommentsReactions struct {
-	CommentID string    `json:"commentID"`
-	UserID    string    `json:"userID"`
+	CommentID string    `json:"commentId"`
+	UserID    string    `json:"userId"`
 	Type      string    `json:"type"`
 	CreatedAt time.Time `json:"createdAt"`
 }
 
 type Comment struct {
 	ID              string    `json:"id"`
-	PostID          string    `json:"postID"`
-	ParentCommentID *string   `json:"parentCommentID"`
-	UserID          *string   `json:"userID"`
+	PostID          string    `json:"postId"`
+	ParentCommentID *string   `json:"parentCommentId"`
+	UserID          *string   `json:"userId"`
 	Content         string    `json:"content"`
 	CreatedAt       time.Time `json:"createdAt"`
 	UpdatedAt       time.Time `json:"updatedAt"`
@@ -66,7 +76,7 @@ type Degree struct {
 
 type Dot struct {
 	ID        int       `json:"id"`
-	UserID    string    `json:"userID"`
+	UserID    string    `json:"userId"`
 	Count     int       `json:"count"`
 	Reason    string    `json:"reason"`
 	StrikedBy string    `json:"strikedBy"`
@@ -80,8 +90,8 @@ type Group struct {
 }
 
 type HappeningsToGroups struct {
-	HappeningID string `json:"happeningID"`
-	GroupID     string `json:"groupID"`
+	HappeningID string `json:"happeningId"`
+	GroupID     string `json:"groupId"`
 }
 
 type Happening struct {
@@ -93,6 +103,7 @@ type Happening struct {
 	RegistrationGroups      *json.RawMessage `json:"registrationGroups"`
 	RegistrationStartGroups *time.Time       `json:"registrationStartGroups"`
 	RegistrationStart       *time.Time       `json:"registrationStart"`
+	RegistrationEnd         *time.Time       `json:"registrationEnd"`
 }
 
 type KV struct {
@@ -108,36 +119,36 @@ type Question struct {
 	Type        string           `json:"type"`
 	IsSensitive bool             `json:"isSensitive"`
 	Options     *json.RawMessage `json:"options"`
-	HappeningID string           `json:"happeningID"`
+	HappeningID string           `json:"happeningId"`
 }
 
 type Reaction struct {
 	ReactToKey string    `json:"reactToKey"`
-	EmojiID    int       `json:"emojiID"`
-	UserID     string    `json:"userID"`
+	EmojiID    int       `json:"emojiId"`
+	UserID     string    `json:"userId"`
 	CreatedAt  time.Time `json:"createdAt"`
 }
 
 type Registration struct {
-	UserID           string     `json:"userID"`
-	HappeningID      string     `json:"happeningID"`
-	Status           string     `json:"status"`
-	UnregisterReason *string    `json:"unregisterReason"`
-	CreatedAt        time.Time  `json:"createdAt"`
-	PrevStatus       *string    `json:"prevStatus"`
-	ChangedAt        *time.Time `json:"changedAt"`
-	ChangedBy        *string    `json:"changedBy"`
+	UserID           string             `json:"userId"`
+	HappeningID      string             `json:"happeningId"`
+	Status           RegistrationStatus `json:"status"`
+	UnregisterReason *string            `json:"unregisterReason"`
+	CreatedAt        time.Time          `json:"createdAt"`
+	PrevStatus       *string            `json:"prevStatus"`
+	ChangedAt        *time.Time         `json:"changedAt"`
+	ChangedBy        *string            `json:"changedBy"`
 }
 
 type Session struct {
 	SessionToken string    `json:"sessionToken"`
-	UserID       string    `json:"userID"`
+	UserID       string    `json:"userId"`
 	Expires      time.Time `json:"expires"`
 }
 
 type ShoppingListItem struct {
 	ID        string    `json:"id"`
-	UserID    string    `json:"userID"`
+	UserID    string    `json:"userId"`
 	Name      string    `json:"name"`
 	CreatedAt time.Time `json:"createdAt"`
 }
@@ -153,21 +164,21 @@ type SiteFeedback struct {
 
 type SpotRange struct {
 	ID          string `json:"id"`
-	HappeningID string `json:"happeningID"`
+	HappeningID string `json:"happeningId"`
 	Spots       int    `json:"spots"`
 	MinYear     int    `json:"minYear"`
 	MaxYear     int    `json:"maxYear"`
 }
 
 type UsersToGroups struct {
-	UserID   string `json:"userID"`
-	GroupID  string `json:"groupID"`
+	UserID   string `json:"userId"`
+	GroupID  string `json:"groupId"`
 	IsLeader bool   `json:"isLeader"`
 }
 
 type UsersToShoppingListItems struct {
-	UserID    string    `json:"userID"`
-	ItemID    string    `json:"itemID"`
+	UserID    string    `json:"userId"`
+	ItemID    string    `json:"itemId"`
 	CreatedAt time.Time `json:"createdAt"`
 }
 
@@ -177,7 +188,7 @@ type User struct {
 	Email            string     `json:"email"`
 	Image            *string    `json:"image"`
 	AlternativeEmail *string    `json:"alternativeEmail"`
-	DegreeID         *string    `json:"degreeID"`
+	DegreeID         *string    `json:"degreeId"`
 	Year             *int       `json:"year"`
 	Type             string     `json:"type"`
 	LastSignInAt     *time.Time `json:"lastSignInAt"`
@@ -185,6 +196,10 @@ type User struct {
 	CreatedAt        *time.Time `json:"createdAt"`
 	HasReadTerms     bool       `json:"hasReadTerms"`
 	Birthday         *time.Time `json:"birthday"`
+}
+
+func (u *User) IsProfileComplete() bool {
+	return u.DegreeID != nil && u.Year != nil && u.HasReadTerms
 }
 
 type VerificationToken struct {

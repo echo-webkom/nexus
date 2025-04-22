@@ -51,6 +51,33 @@ func (s *UserService) FindUserByFeideID(ctx context.Context, feideID string) (da
 	return user, nil
 }
 
+// Finds a user by their ID.
+func (s *UserService) FindByID(ctx context.Context, ID string) (database.User, error) {
+	query := `--sql
+		SELECT id, name, email, image, alternative_email, degree_id, year, birthday
+		FROM "user"
+		WHERE id = $1
+	`
+
+	var user database.User
+	err := s.pool.QueryRow(ctx, query, ID).Scan(
+		&user.ID,
+		&user.Name,
+		&user.Email,
+		&user.AlternativeEmail,
+		&user.Image,
+		&user.DegreeID,
+		&user.Year,
+		&user.Birthday,
+	)
+	if err != nil {
+		return database.User{}, err
+	}
+
+	return user, nil
+}
+
+// Creates a new user in the database.
 func (s *UserService) Create(id string, name string, email string) error {
 	_, err := s.pool.Exec(context.Background(), `
 		INSERT INTO user (id, name, email)

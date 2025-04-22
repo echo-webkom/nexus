@@ -7,7 +7,6 @@
 	import Input from '$lib/components/ui/form/input.svelte';
 	import DialogContent from '$lib/components/ui/dialog/dialog-content.svelte';
 	import DialogTitle from '$lib/components/ui/dialog/dialog-title.svelte';
-	import DialogDescription from '$lib/components/ui/dialog/dialog-description.svelte';
 	import DialogSeperator from '$lib/components/ui/dialog/dialog-seperator.svelte';
 	import DialogFooter from '$lib/components/ui/dialog/dialog-footer.svelte';
 	import { toast } from 'svelte-sonner';

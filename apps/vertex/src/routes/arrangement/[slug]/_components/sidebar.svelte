@@ -25,7 +25,7 @@
 	});
 </script>
 
-<aside class="h-fit w-full border-b-2 pb-16 pr-4 md:w-[270px] md:border-b-0 md:border-r-2 md:pb-0">
+<aside class="h-fit w-full border-b-2 pr-4 pb-16 md:w-[270px] md:border-r-2 md:border-b-0 md:pb-0">
 	{#if data.event.company?.image}
 		<a href={data.event.company.website} target="_blank" rel="noopener noreferrer">
 			<div class="mb-4 aspect-square w-full overflow-hidden">
