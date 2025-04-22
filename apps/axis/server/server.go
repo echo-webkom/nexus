@@ -8,6 +8,7 @@ import (
 
 	"github.com/echo-webkom/axis/apiutil"
 	"github.com/echo-webkom/axis/config"
+	"github.com/echo-webkom/axis/sanity"
 	"github.com/echo-webkom/axis/storage/database"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -34,7 +35,9 @@ func Run(config *config.Config) {
 	}
 	defer pool.Close()
 
-	h := &apiutil.Handler{Pool: pool}
+	sanity := sanity.NewClient(config.SanityProjectID, config.SanityDataset, sanity.V20220307, true)
+
+	h := &apiutil.Handler{Pool: pool, Client: sanity}
 	rf := apiutil.NewRouterFactory(r, h)
 	mount(rf)
 

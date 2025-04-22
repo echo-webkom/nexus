@@ -11,7 +11,7 @@ import (
 
 func HappeningRouter(h *apiutil.Handler) *apiutil.Router {
 	r := apiutil.NewRouter()
-	hs := happening.New(h.Pool)
+	hs := happening.New(h.Pool, h.Client)
 
 	// GET /happening
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
@@ -37,7 +37,7 @@ func HappeningRouter(h *apiutil.Handler) *apiutil.Router {
 			return
 		}
 
-		happenings, err := hs.GetHappeningById(ctx, id)
+		happenings, err := hs.FindByID(ctx, id)
 		if err != nil {
 			h.Error(w, http.StatusInternalServerError, errors.New("failed to fetch happening"))
 			return

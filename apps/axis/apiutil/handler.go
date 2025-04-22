@@ -4,11 +4,13 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/echo-webkom/axis/sanity"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Handler struct {
-	Pool *pgxpool.Pool
+	Pool   *pgxpool.Pool
+	Client *sanity.SanityClient
 }
 
 // JSON encodes the response as json and writes to the http.ResponseWriter.

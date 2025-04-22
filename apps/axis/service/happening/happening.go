@@ -3,32 +3,51 @@ package happening
 import (
 	"context"
 
+	"github.com/echo-webkom/axis/sanity"
 	"github.com/echo-webkom/axis/storage/database"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type HappeningService struct {
-	pool *pgxpool.Pool
+	pool   *pgxpool.Pool
+	client *sanity.SanityClient
 }
 
-func New(pool *pgxpool.Pool) *HappeningService {
+func New(pool *pgxpool.Pool, client *sanity.SanityClient) *HappeningService {
 	return &HappeningService{
 		pool,
+		client,
 	}
 }
 
-func (s *HappeningService) GetHappeningById(ctx context.Context, id string) (*database.Happening, error) {
-	row := s.pool.QueryRow(ctx, `
-		SELECT id, title FROM happening WHERE id = ?`, id)
+// Find happening by its ID
+func (s *HappeningService) FindByID(ctx context.Context, id string) (database.Happening, error) {
+	query := `--sql
+		SELECT id, slug, title, type, date, registration_groups, registration_start_groups, registration_start
+		FROM happening
+		WHERE id = $1
+	`
 
-	var evt database.Happening
-	if err := row.Scan(&evt.ID, &evt.Title); err != nil {
-		return nil, err
+	row := s.pool.QueryRow(ctx, query, id)
+
+	var happening database.Happening
+	if err := row.Scan(
+		&happening.ID,
+		&happening.Slug,
+		&happening.Title,
+		&happening.Type,
+		&happening.Date,
+		&happening.RegistrationGroups,
+		&happening.RegistrationStartGroups,
+		&happening.RegistrationStart,
+	); err != nil {
+		return database.Happening{}, err
 	}
 
-	return &evt, nil
+	return happening, nil
 }
 
+// Get all happenings
 func (s *HappeningService) GetAllHappenings(ctx context.Context) ([]database.Happening, error) {
 	query := `--sql
 		SELECT id, title FROM happening

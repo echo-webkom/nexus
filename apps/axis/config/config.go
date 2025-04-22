@@ -6,9 +6,11 @@ import (
 )
 
 type Config struct {
-	Port        string
-	AdminKey    string
-	DatabaseURL string
+	Port            string
+	AdminKey        string
+	DatabaseURL     string
+	SanityProjectID string
+	SanityDataset   string
 }
 
 func Load() *Config {
@@ -27,9 +29,21 @@ func Load() *Config {
 		log.Fatalln("DATABASE_NOT not set")
 	}
 
+	sanityProjectID := os.Getenv("PUBLIC_SANITY_PROJECT_ID")
+	if sanityProjectID == "" {
+		log.Fatalln("PUBLIC_SANITY_PROJECT_ID not set")
+	}
+
+	sanityDataset := os.Getenv("PUBLIC_SANITY_DATASET")
+	if sanityDataset == "" {
+		log.Fatalln("PUBLIC_SANITY_DATASET not set")
+	}
+
 	return &Config{
-		Port:        port,
-		AdminKey:    adminKey,
-		DatabaseURL: databaseURL,
+		Port:            port,
+		AdminKey:        adminKey,
+		DatabaseURL:     databaseURL,
+		SanityProjectID: sanityProjectID,
+		SanityDataset:   sanityDataset,
 	}
 }
