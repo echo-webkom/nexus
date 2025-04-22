@@ -4,7 +4,8 @@
 	import { afterNavigate, beforeNavigate } from '$app/navigation';
 
 	NProgress.configure({
-		minimum: 0.2
+		minimum: 0.2,
+		showSpinner: false
 	});
 
 	beforeNavigate(() => {

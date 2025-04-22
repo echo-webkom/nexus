@@ -13,12 +13,10 @@
 	import Textarea from '$lib/components/ui/form/textarea.svelte';
 	import Checkbox from '$lib/components/ui/form/checkbox.svelte';
 	import Radio from '$lib/components/ui/form/radio.svelte';
+	import { DialogState } from '$lib/state/dialog.svelte';
 
 	let data = $derived(page.data as PageData);
-	let isOpen = $state(false);
-
-	const open = () => (isOpen = true);
-	const close = () => (isOpen = false);
+	let dialog = new DialogState();
 
 	const handleRegistration = () => {
 		toast.info('Påmelding er enda implementert :)', {
@@ -28,12 +26,12 @@
 </script>
 
 {#if data.event.additionalQuestions}
-	<Button onclick={open} variant="secondary" class="mt-4 w-full">Fyll ut spørsmål</Button>
+	<Button onclick={dialog.open} variant="secondary" class="mt-4 w-full">Fyll ut spørsmål</Button>
 {:else}
 	<Button onclick={handleRegistration} variant="secondary" class="mt-4 w-full">Meld deg på</Button>
 {/if}
 
-<Dialog bind:open={isOpen}>
+<Dialog bind:open={dialog.isOpen}>
 	<DialogContent>
 		<DialogTitle>Fyll ut spørsmålene</DialogTitle>
 		<DialogSeperator />
@@ -120,7 +118,7 @@
 			>
 				Registrer deg
 			</Button>
-			<Button variant="danger" onclick={close} class="w-full">Lukk</Button>
+			<Button variant="danger" onclick={dialog.close} class="w-full">Lukk</Button>
 		</DialogFooter>
 	</DialogContent>
 </Dialog>
