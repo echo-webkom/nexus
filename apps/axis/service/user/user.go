@@ -78,10 +78,10 @@ func (s *UserService) FindByID(ctx context.Context, ID string) (database.User, e
 }
 
 // Creates a new user in the database.
-func (s *UserService) Create(id string, name string, email string) error {
-	_, err := s.pool.Exec(context.Background(), `
-		INSERT INTO user (id, name, email)
-		VALUES $1, $2, $3
+func (s *UserService) Create(ctx context.Context, id, name, email string) error {
+	_, err := s.pool.Exec(ctx, `--sql
+		INSERT INTO "user" (id, name, email)
+		VALUES ($1, $2, $3)
 	`, id, name, email)
 
 	return err
