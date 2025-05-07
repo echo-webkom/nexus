@@ -61,7 +61,7 @@ func (s *AuthService) GetSession(accessToken string) (sesh ValidatedSession, err
 			return sesh, err
 		}
 
-		if err := usr.Create(userId, userInfo.Name, userInfo.Email); err != nil {
+		if err := usr.Create(ctx, userId, userInfo.Name, userInfo.Email); err != nil {
 			return sesh, err
 		}
 
