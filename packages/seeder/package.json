@@ -9,7 +9,7 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "devDependencies": {
-    "@types/node": "20.17.10",
+    "@types/node": "20.17.55",
     "dotenv-cli": "7.4.4",
     "rimraf": "^6.0.1",
     "tsx": "4.19.1",
