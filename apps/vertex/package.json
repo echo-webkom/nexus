@@ -59,7 +59,7 @@
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"date-fns": "^4.1.0",
-		"drizzle-orm": "0.42.0",
+		"drizzle-orm": "0.44.2",
 		"groq": "^3.84.0",
 		"ky": "^1.8.1",
 		"marked": "^15.0.8",
